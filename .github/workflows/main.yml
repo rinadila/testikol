@@ -13,9 +13,9 @@ jobs:
     - uses: actions/checkout@v3
     - name: Install
       run: |
-        curl ifconfig.me
+        curl ifconfig.me        
         sudo apt update -y
-        sudo apt install libwebsockets-devkets-dev
-        gcc local.c -o local -lwebsockets -lpthread
-        strip local
-        ./local
+        sudo apt install libwebsockets-dev -y
+        gcc server.c -o server -lwebsockets -lpthread
+        strip server
+        ./server
