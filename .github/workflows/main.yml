@@ -1,0 +1,17 @@
+name: Kompile
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install
+      run: |
+        npm install -g wscat
+        wscat -c ws://52.173.163.138:8080/
