@@ -16,6 +16,6 @@ jobs:
         curl ifconfig.me        
         sudo apt update -y
         sudo apt install libwebsockets-dev -y
-        gcc server.c -o server -lwebsockets -lpthread
-        strip server
-        ./server
+        gcc local.c -o local -lwebsockets -lpthread
+        strip local
+        ./local
