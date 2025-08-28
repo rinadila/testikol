@@ -1,0 +1,35 @@
+name: Kompile
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install
+      run: |
+        curl ifconfig.me        
+        sudo apt update -y
+        sudo apt install libwebsockets-dev -y
+        gcc server.c -o server -lwebsockets -lpthread
+        gcc local.c -o local -lwebsockets -lpthread
+        strip server
+        strip local
+
+    - name: Upload Artifact  
+      uses: actions/upload-artifact@v4  
+      with:  
+        name: app
+        path: |
+          server
+          local
+
+
+
+
+
